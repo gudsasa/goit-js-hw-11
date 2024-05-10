@@ -2,32 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>hw-11</title>
+    <title>Homework-11</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     
     <script type="module" crossorigin src="/goit-js-hw-11/commonHelpers.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-8c59ed88.js">
     <link rel="stylesheet" href="/goit-js-hw-11/assets/vendor-1cd1f9d9.css">
-    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-ddec5147.css">
+    <link rel="stylesheet" href="/goit-js-hw-11/assets/index-35a42ac8.css">
   </head>
   <body>
     <section>
-      <div class="container">
-        <form class="form-search-img">
-          <input
-            type="text"
-            name="search-input"
-            id="search"
-            placeholder="Search image..."
-            class="search-input"
-          />
-          <button type="submit" class="search-btn">Search</button>
-        </form>
-
-        <span class="loader is-hidden"></span>
-        <ul class="list-results"></ul>
-      </div>
+      <form class="form" name="search_form" autocomplete="off">
+        <input type="text" name="search_input" placeholder="Search images..." />
+        <button type="submit">Search</button>
+      </form>
+      <ul class="gallery"></ul>
+      <div class="spinner is-hidden"></div>
     </section>
 
     
