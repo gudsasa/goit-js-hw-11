@@ -1,44 +1,39 @@
-'use strict';
 
-export function createGallery(hitsArray) {
-  const gallery = hitsArray
-    .map(
-      ({
-        largeImageURL,
-        webformatURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) =>
-        `<li class="item-results">
-          <a href="${largeImageURL}" class="gallery-link">
-            <img src="${webformatURL}" alt="${tags}" class="gallery-img"/>
-          </a>
-          <div class="wrap-info">
-            <ul class="list-info">
-              <li class="item-info">
-                <p class="headline-info">Likes</p>
-                <p class="text-info">${likes}</p>
-              </li>
-              <li class="item-info">
-                <p class="headline-info">Views</p>
-                <p class="text-info">${views}</p>
-              </li>
-              <li class="item-info">
-                <p class="headline-info">Comments</p>
-                <p class="text-info">${comments}</p>
-              </li>
-              <li class="item-info">
-                <p class="headline-info">Downloads</p>
-                <p class="text-info">${downloads}</p>
-              </li>
-            </ul>
-          </div>
-        </li>`
-    )
-    .join('');
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+export function displayImages(images, gallery) {
+    const markup = images.map(image => `
+        <li class="gallery-item">
+            <a class="gallery-link" href="${image.largeImageURL}">
+                <div class="full-image">
+                    <img class="gallery-image" src="${image.webformatURL}" alt="${image.tags}">
+                    <ul class="image-button">
+                        <li><p>Likes</p><p>${image.likes}</p></li>
+                        <li><p>Views</p><p>${image.views}</p></li>
+                        <li><p>Comments</p><p>${image.comments}</p></li>
+                        <li><p>Downloads</p><p>${image.downloads}</p></li>
+                    </ul>
+                </div>
+            </a>
+        </li>
+    `).join('');
+    gallery.innerHTML = markup;
 
-  document.querySelector('.list-results').innerHTML = gallery;
+    const lightbox = new SimpleLightbox('.gallery a', {
+        captionsData: 'alt',
+        captionDelay: 250,
+    });
+    lightbox.refresh();
+}
+
+export function displayToast(message, type) {
+    iziToast[type]({
+        message,
+        messageColor: 'white',
+        position: 'topRight',
+        backgroundColor: 'red'
+
+    });
 }
